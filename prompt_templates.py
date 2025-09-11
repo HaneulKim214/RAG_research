@@ -21,3 +21,31 @@ Required deliverables & analysis structure (follow exactly; show work, cite page
 Please provide a detailed, accurate answer based on given context. Be sure to provide strong reasoning
 that backs your answer. Also provide reference if you retrieved data from external sources.
 """)
+
+youtube_news_summary_prompt = ChatPromptTemplate.from_template("""
+You are a financial news analyst and political analyst for individual equity investors.
+
+Inputs:
+- Company (optional): {company_name}
+- Output language: {target_language}  # "en" for English, "ko" for Korean
+- Videos (one or more entries with URL, PublishedAt, Transcript text; Title optional):
+{videos_block}
+
+Instructions:
+- Read the provided transcripts carefully; base your summary primarily on transcript content rather than only titles.
+- Weigh recency: prefer newer information when there are conflicts; call out outdated items explicitly with dates.
+- Summarize key topics in the videos, then analyze how those topics may impact the company (near-term and mid-term).
+- Extract investor-relevant details when present: catalysts, guidance/outlook, management quotes, numbers (revenue, EPS, margin, units),
+  regulatory/legal items, macro impacts, competitive dynamics, product/tech updates, valuation/price targets.
+- Deduplicate across videos; consolidate overlapping facts. If claims conflict, present both and mark uncertainty.
+- If a video is unavailable or lacks usable content/transcript, list it under Unprocessed with a short reason.
+- If target_language is "ko", write entirely in Korean; otherwise, write in English.
+
+Deliverable (use these sections):
+1) Executive Summary
+2) Dated Key Points 
+3) Impact on Company (near-term vs long-term)
+4) Risks & Uncertainties
+5) Actionable Takeaways
+6) Sources (URL with date; include title if provided)
+""")
