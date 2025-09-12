@@ -1,4 +1,4 @@
-# RAG Experiments & Research Project
+# RAG Research
 
 A comprehensive Retrieval-Augmented Generation (RAG) research project focused on experimenting with different RAG components and evaluation methodologies using financial documents.
 
