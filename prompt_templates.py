@@ -7,10 +7,11 @@ class QAGenerationPrompts:
     
     # Base QA Generation Prompt
     BASE_QA_GENERATION = ChatPromptTemplate.from_template("""
-Your task is to write a factoid question and an answer given a context.
+Your task is to write a factoid question and an answer given a context about the company {company_name}.
 Your factoid question should be answerable with a specific, concise piece of factual information from the context.
 Your factoid question should be formulated in the same style as questions users could ask in a search engine.
 This means that your factoid question MUST NOT mention something like "according to the passage" or "context".
+You answers should be at least 20 words and questions should be at least 10 words.
 
 Provide your answer as follows:
 
@@ -20,13 +21,15 @@ Answer: (your answer to the factoid question)
 
 Now here is the context.
 
-Context: {context}\n
+Context: {context}
 Output:::""")
 
     GROUNDEDNESS_CRITIQUE_PROMPT = ChatPromptTemplate.from_template("""
 You will be given a context and a question.
-Your task is to provide a 'total rating' scoring how well one can answer the given question unambiguously with the given context.
-Give your answer on a scale of 1 to 5, where 1 means that the question is not answerable at all given the context, and 5 means that the question is clearly and unambiguously answerable with the context.
+Your task is to provide a 'total rating' scoring how well one can answer
+ the given question unambiguously with the given context.
+Give your answer on a scale of 1 to 5, where 1 means that the question is not answerable at all given the context, 
+and 5 means that the question is clearly and unambiguously answerable with the context.
 
 Provide your answer as follows:
 
@@ -44,8 +47,10 @@ Answer::: """)
 
     RELEVANCE_CRITIQUE_PROMPT = ChatPromptTemplate.from_template("""
 You will be given a question.
-Your task is to provide a 'total rating' representing how useful this question can be to machine learning developers building NLP applications with the Hugging Face ecosystem.
-Give your answer on a scale of 1 to 5, where 1 means that the question is not useful at all, and 5 means that the question is extremely useful.
+Your task is to provide a 'total rating' representing how useful this question can be to machine learning developers
+ building NLP applications with the Hugging Face ecosystem.
+Give your answer on a scale of 1 to 5, where 1 means that the question is not useful at all,
+ and 5 means that the question is extremely useful.
 
 Provide your answer as follows:
 
@@ -75,16 +80,6 @@ Answer: {answer}\n
 
 Answer:::
 """)
-
-
-    # Question Types Configuration
-    QUESTION_TYPES = {
-        "factual": "Direct facts, dates, numbers, or specific information",
-        "analytical": "Analysis, interpretation, or synthesis requiring reasoning", 
-        "comparative": "Comparisons between different aspects, periods, or entities",
-        "strategic": "Business strategy, plans, or strategic positioning",
-        "risk": "Challenges, risks, or potential issues and uncertainties"
-    }
 
 
 financial_report_analysis_prompt = ChatPromptTemplate.from_template("""

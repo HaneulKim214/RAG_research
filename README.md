@@ -21,7 +21,7 @@ Raw Documents → Data Extraction → Chunking → Indexing → Retrieval → Ge
 - **Multi-modal Support**: Handles text, images, and tables from financial reports
 
 **Key Features:**
-- Automated text extraction from LG Energy Solution audit reports
+- Automated text extraction from financial reports
 - OCR fallback for image-heavy pages
 - YouTube financial news analysis with transcript processing
 - Clean text preprocessing and formatting
